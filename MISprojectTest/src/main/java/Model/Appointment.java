@@ -7,57 +7,84 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
-
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author raniacharkaoui
  */
-
+@Entity
+@Table(name = "Appointment")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a"),
+    @NamedQuery(name = "Appointment.findById", query = "SELECT a FROM Appointment a WHERE a.id = :id"),
+    @NamedQuery(name = "Appointment.findByAppointmentTime", query = "SELECT a FROM Appointment a WHERE a.appointmentTime = :appointmentTime")})
 public class Appointment implements Serializable {
-    private Integer idAppointment;
+
+    @JoinColumn(name = "patient", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Patient patient;
+    @JoinColumn(name = "vaccinationCenter", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private VaccinationCenter vaccinationCenter;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "appointmentTime")
+    @Temporal(TemporalType.DATE)
     private Date appointmentTime;
-    private Patient idPatient;
 
     public Appointment() {
     }
 
-    public Appointment(Integer idappointment) {
-        this.idAppointment = idappointment;
+    public Appointment(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdAppointment() {
-        return idAppointment;
+    public Appointment(Integer id, Date appointmentTime) {
+        this.id = id;
+        this.appointmentTime = appointmentTime;
     }
 
-    public void setIdAppointment(Integer idappointment) {
-        this.idAppointment = idappointment;
+    public Integer getId() {
+        return id;
     }
 
-    public Date getAppointmenttime() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(Date appointmenttime) {
-        this.appointmentTime = appointmenttime;
-    }
-    public Patient getIdPatient() {
-        return idPatient;
-    }
-
-    public void setIdPatient(Patient idpatient) {
-        this.idPatient = idpatient;
+    public void setAppointmentTime(Date appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idAppointment != null ? idAppointment.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -68,12 +95,31 @@ public class Appointment implements Serializable {
             return false;
         }
         Appointment other = (Appointment) object;
-        if ((this.idAppointment == null && other.idAppointment != null) || (this.idAppointment != null && !this.idAppointment.equals(other.idAppointment))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Model.Appointment[ id=" + id + " ]";
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public VaccinationCenter getVaccinationCenter() {
+        return vaccinationCenter;
+    }
+
+    public void setVaccinationCenter(VaccinationCenter vaccinationCenter) {
+        this.vaccinationCenter = vaccinationCenter;
+    }
     
 }
