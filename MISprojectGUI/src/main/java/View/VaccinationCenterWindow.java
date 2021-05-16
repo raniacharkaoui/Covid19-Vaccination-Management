@@ -5,6 +5,8 @@
  */
 package View;
 
+import java.awt.event.WindowAdapter;
+
 /**
  *
  * @author gillesferon
@@ -110,4 +112,6 @@ public class VaccinationCenterWindow extends javax.swing.JPanel {
     private javax.swing.JButton UpdateButton;
     private javax.swing.JLabel VaccinationCenterLabel;
     // End of variables declaration//GEN-END:variables
+
+    
 }

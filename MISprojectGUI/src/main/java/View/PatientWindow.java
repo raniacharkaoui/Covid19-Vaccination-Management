@@ -5,6 +5,12 @@
  */
 package View;
 
+import Controller.PatientController;
+import Model.Patient;
+import java.awt.event.WindowAdapter;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author gillesferon
@@ -17,7 +23,9 @@ public class PatientWindow extends javax.swing.JPanel {
     public PatientWindow() {
         initComponents();
     }
-
+    private final EntityManagerFactory emfac = Persistence.createEntityManagerFactory("MISproject2_PU");
+    private final PatientController patientCtrl = new PatientController(emfac);
+    private Patient patient = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,6 +67,11 @@ public class PatientWindow extends javax.swing.JPanel {
         FirstNameLabel.setText("Prénom :");
 
         FirstNameText.setText("jTextField1");
+        FirstNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameTextActionPerformed(evt);
+            }
+        });
 
         LastNameLabel.setText("Nom :");
 
@@ -107,6 +120,11 @@ public class PatientWindow extends javax.swing.JPanel {
         date29.setText("29 mai 2021");
 
         SaveButton.setText("Save");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -203,7 +221,29 @@ public class PatientWindow extends javax.swing.JPanel {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void setPatient(Patient patient){
+        this.patient = patient;
+    }
+    public Patient getPatient(){
+        updatePatient();
+                
+        return patient;
+    }
+    public void updatePatient(){
+        if( patient == null ){
+            patient = new Patient(); 
+            System.out.println("New Patient created");
+            System.out.println(patient.getId());
+        }
+        
+        patient.setFirstName(FirstNameText.getText());
+        patient.setLastName(LastNameText.getText());
+        patient.setNiss(nissText.getText());
+        patient.setMunicipality(MunicipalityText.getText());
+        patient.setEmail(mailAddressText.getText());
+        System.out.println("Info set");
+        
+    }
     private void LastNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameTextActionPerformed
@@ -211,6 +251,21 @@ public class PatientWindow extends javax.swing.JPanel {
     private void date27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date27ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_date27ActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+
+        updatePatient();
+        //Create patient if necessary
+        
+        if( patient.getId() == null ){
+            patientCtrl.create(patient);           
+        }
+        
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void FirstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,4 +292,6 @@ public class PatientWindow extends javax.swing.JPanel {
     private javax.swing.JLabel nissLabel;
     private javax.swing.JTextField nissText;
     // End of variables declaration//GEN-END:variables
+
+    
 }

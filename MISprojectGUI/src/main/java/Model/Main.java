@@ -5,6 +5,7 @@
  */
 package Model;
 
+import View.MainWindow;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,6 +44,10 @@ public class Main {
         
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException ex) {Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+ 
+        new MainWindow().setVisible(true);
+            
     }
+    
     
 }

@@ -1,6 +1,9 @@
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/Model/Patient.java
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/Model/Main.java
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/Model/Appointment.java
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/View/MainWindow.java
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/Model/VaccinationCenter.java
-/Users/gillesferon/NetBeansProjects/MISproject/Covid19-Vaccination-Management/MISproject2/src/main/java/Model/RegistrationManager.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Model/Patient.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Model/VaccinationCenter.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Model/RegistrationManager.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Model/Appointment.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/View/MainWindow.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/View/VaccinationCenterWindow.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Model/Main.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/Controller/PatientController.java
+/Users/raniacharkaoui/NetBeansProjects/MISprojectGUI/src/main/java/View/PatientWindow.java
