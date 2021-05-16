@@ -1,0 +1,9 @@
+Model/Main.class
+Model/Patient.class
+Model/Patient_.class
+Model/Appointment.class
+Model/VaccinationCenter_.class
+Model/VaccinationCenter.class
+View/MainWindow.class
+Model/RegistrationManager.class
+Model/Appointment_.class
